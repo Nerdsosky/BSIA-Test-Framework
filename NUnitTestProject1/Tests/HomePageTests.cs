@@ -14,7 +14,7 @@ namespace NUnitTestProject1.Tests
         private IWebDriver driver;
 
         [SetUp]
-        public void Setup()
+        public void Init()
         {
             driver = new FirefoxDriver();
             driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(3));
