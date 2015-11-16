@@ -22,11 +22,14 @@ namespace NUnitTestProject1.Tests
         }
 
         [Test]
-        public void Test_Login_Successfully()
+        public void Test_Login_Successfully(
+            [Values("wysoskyj@gmail.com")] string email,
+            [Values("Football2!")] string password)
         {
             LoginPage loginPage = new LoginPage(driver);
-            loginPage.LoginUser("wysoskyj@gmail.com", "Football2!");
-            Assert.AreEqual(driver.FindElement(By.CssSelector("[href*='Account/Manage']")).Text, "Hello, wysoskyj@gmail.com !");
+            loginPage.LoginUser(email, password);
+            Assert.AreEqual( "Hello, " + email + " !", driver.FindElement(By.CssSelector("[href*='Account/Manage']")).Text);
+            Assert.AreEqual("Home Page - BSIA", driver.Title);
         }
 
         [TearDown]
