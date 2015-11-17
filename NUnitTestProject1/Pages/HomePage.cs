@@ -13,6 +13,7 @@ namespace NUnitTestProject1.Pages
     public class HomePage
     {
         private IWebDriver driver;
+        private WebDriverWait wait;
 
         public HomePage(IWebDriver driver)
         {
@@ -22,27 +23,57 @@ namespace NUnitTestProject1.Pages
         By learnMoreCreateInspection = By.CssSelector("[href*='Create.aspx']");
         By learnMoreEditInspection = By.CssSelector("[href*='Edit.aspx']");
         By learnMoreReports = By.CssSelector("[href*='Reports.aspx']");
+        By emailInput = By.Id("usr");
+        By passwordInput = By.Id("pwd");
+        By submitButton = By.Id("");
 
         public CreatePage ClickLearnMoreCreateReports()
         {
             driver.FindElement(learnMoreCreateInspection).Click();
-
             return new CreatePage(driver);
         }
 
         public EditPage ClickLearnMoreEditReports()
         {
             driver.FindElement(learnMoreEditInspection).Click();
-
             return new EditPage(driver);
         }
 
         public ReportsPage ClickLearnMoreReports()
         {
             driver.FindElement(learnMoreReports).Click();
-
             return new ReportsPage(driver);
         }
 
+        public HomePage EnterEmail(string email)
+        {
+            driver.FindElement(emailInput).SendKeys(email);
+            return this;
+        }
+
+        public HomePage EnterPassword(string password)
+        {
+            driver.FindElement(passwordInput).SendKeys(password);
+            return this;
+        }
+
+        public CreatePage SubmitLogin()
+        {
+            driver.FindElement(submitButton).Click();
+            return new CreatePage(driver);
+        }
+
+        public HomePage SubmitLoginExpectingError()
+        {
+            driver.FindElement(submitButton).Click();
+            return this;
+        }
+
+        public CreatePage LoginUser(string email, string password)
+        {
+            EnterEmail(email);
+            EnterPassword(password);
+            return SubmitLogin();
+        }
     }
 }
