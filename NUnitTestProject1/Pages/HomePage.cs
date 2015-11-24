@@ -13,16 +13,15 @@ namespace NUnitTestProject1.Pages
     public class HomePage
     {
         private IWebDriver driver;
-        private WebDriverWait wait;
 
         public HomePage(IWebDriver driver)
         {
             this.driver = driver;
         }
 
-        By learnMoreCreateInspection = By.CssSelector("[href*='Create.aspx']");
-        By learnMoreEditInspection = By.CssSelector("[href*='Edit.aspx']");
-        By learnMoreReports = By.CssSelector("[href*='Reports.aspx']");
+        By learnMoreCreateInspection = By.CssSelector("[href='Create.aspx']");
+        By learnMoreEditInspection = By.CssSelector("[href='Edit.aspx']");
+        By learnMoreReports = By.CssSelector("[href='Reports.aspx']");
         By emailInput = By.Id("usr");
         By passwordInput = By.Id("pwd");
         By submitButton = By.Id("");

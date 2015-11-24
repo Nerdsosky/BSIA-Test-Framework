@@ -10,7 +10,7 @@ namespace NUnitTestProject1.Tests
     [TestFixture]
     public class LoginPageTests
     {
-        private string applicationURL = "http://localhost:49571/Account/Login";
+        private string applicationURL = "http://bsia.azurewebsites.net/Account/Login";
         private IWebDriver driver;
 
         [SetUp]

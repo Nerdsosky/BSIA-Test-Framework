@@ -10,7 +10,7 @@ namespace NUnitTestProject1.Tests
     [TestFixture]
     public class HomePageTests
     {
-        private string applicationURL = "http://localhost:49571/";
+        private string applicationURL = "http://bsia.azurewebsites.net/";
         private IWebDriver driver;
 
         [SetUp]
