@@ -41,7 +41,7 @@ namespace NUnitTestProject1.Tests
                 switch (item.GetAttribute("type"))
                 {
                     case "checkbox":
-                        item.SendKeys("\n");
+                        item.Click();
                         break;
                     case "text":
                         item.SendKeys("Testing");
