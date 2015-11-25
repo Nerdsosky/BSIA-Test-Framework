@@ -65,6 +65,7 @@
     <Compile Include="Pages\CreatePage.cs" />
     <Compile Include="Pages\EditPage.cs" />
     <Compile Include="Pages\HomePage.cs" />
+    <Compile Include="Tests\CreatePageTests.cs" />
     <Compile Include="Tests\HomePageTests.cs" />
     <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="Pages\NavigationBar.cs" />
