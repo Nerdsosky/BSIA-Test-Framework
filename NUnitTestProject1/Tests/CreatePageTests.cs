@@ -23,8 +23,12 @@ namespace NUnitTestProject1.Tests
         }
 
         [Test]
-        public void CheckGroupInputs([Values(1)] int groupNumber)
+        public void Test_Create_Inspection()
         {
+            LoginPage loginpage = new LoginPage(driver);
+            loginpage.LoginUser("wysoskyj", "Football2!");
+            driver.Navigate().GoToUrl(applicationURL);
+
             CreatePage createPage = new CreatePage(driver);
 
             createPage.SelectBus("1");
@@ -32,21 +36,26 @@ namespace NUnitTestProject1.Tests
             createPage.ClickGetBusInfo();
 
 
-
-            IList<IWebElement> inputItems = createPage.GetGroupInputElements(groupNumber);
-            Console.WriteLine("Got Input Items" + driver.Title);
-            foreach (IWebElement item in inputItems)
+            for (int i = 1; i < 8; i++)
             {
-                Console.WriteLine("Inside Foreach" + driver.Title);
-                switch (item.GetAttribute("type"))
+                IList<IWebElement> inputItems = createPage.GetGroupInputElements(i);
+                foreach (IWebElement item in inputItems)
                 {
-                    case "checkbox":
-                        item.Click();
-                        break;
-                    case "text":
-                        item.SendKeys("Testing");
-                        Console.WriteLine("Typed in " + item.GetAttribute("id"));
-                        break;
+                    if (item.TagName.Equals("select"))
+                    {
+                        SelectElement select = new SelectElement(item);
+                        select.SelectByText("Major");
+                    }
+
+                    switch (item.GetAttribute("type"))
+                    {
+                        case "checkbox":
+                            item.Click();
+                            break;
+                        case "text":
+                            item.SendKeys("Testing");
+                            break;
+                    }
                 }
             }
 

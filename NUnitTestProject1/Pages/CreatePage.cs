@@ -42,16 +42,15 @@ namespace NUnitTestProject1.Pages
 
             foreach(IWebElement item in groupChildElements)
             {
-                if(item.TagName.Equals("input")){
-                    inputChildElements.Add(item);
-                    Console.WriteLine("added " + item.GetAttribute("type"));
+                if(item.TagName.Equals("input") || item.TagName.Equals("select")){
+                    inputChildElements.Add(item);                   
                  }
-
              }
             
 
             return inputChildElements;
         }
+
 
         public CreatePage SelectBus(string busNumber)
         {

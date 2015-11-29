@@ -22,27 +22,37 @@ namespace NUnitTestProject1.Tests
         }
 
         [Test]
-        public void Test__Homepage_Create_Button()
+        public void Test_Homepage_Create_Button()
         {
             HomePage homePage = new HomePage(driver);
+            homePage.LoginUser("wysoskyj", "Football2!");
             homePage.ClickLearnMoreCreateReports();
             Assert.AreEqual("Create - BSIA", driver.Title);
         }
 
         [Test]
-        public void Test__Homepage_Edit_Button()
+        public void Test_Homepage_Edit_Button()
         {
             HomePage homePage = new HomePage(driver);
+            homePage.LoginUser("wysoskyj", "Football2!");
             homePage.ClickLearnMoreEditReports();
             Assert.AreEqual("Edit - BSIA", driver.Title);
         }
 
         [Test]
-        public void Test__Homepage_Reports_Button()
+        public void Test_Homepage_Reports_Button()
         {
             HomePage homePage = new HomePage(driver);
+            homePage.LoginUser("wysoskyj", "Football2!");
             homePage.ClickLearnMoreReports();
             Assert.AreEqual("Reports - BSIA", driver.Title);
+        }
+
+        [Test]
+        public void Test_Homepage_Login()
+        {
+            HomePage homePage = new HomePage(driver);
+            homePage.LoginUser("wysoskyj", "Football2!");
         }
 
         [TearDown]

@@ -22,9 +22,9 @@ namespace NUnitTestProject1.Pages
         By learnMoreCreateInspection = By.CssSelector("[href='Create.aspx']");
         By learnMoreEditInspection = By.CssSelector("[href='Edit.aspx']");
         By learnMoreReports = By.CssSelector("[href='Reports.aspx']");
-        By emailInput = By.Id("usr");
-        By passwordInput = By.Id("pwd");
-        By submitButton = By.Id("");
+        By emailInput = By.Id("MainContent_d_UserName");
+        By passwordInput = By.Id("MainContent_d_Password");
+        By submitButton = By.CssSelector("[value='Login']");
 
         public CreatePage ClickLearnMoreCreateReports()
         {
