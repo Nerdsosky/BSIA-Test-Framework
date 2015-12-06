@@ -31,32 +31,14 @@ namespace NUnitTestProject1.Tests
 
             CreatePage createPage = new CreatePage(driver);
 
-            createPage.SelectBus("1");
+            createPage.SelectBus("103");
             createPage.SelectSeason("Fall");
             createPage.ClickGetBusInfo();
 
 
             for (int i = 1; i < 8; i++)
             {
-                IList<IWebElement> inputItems = createPage.GetGroupInputElements(i);
-                foreach (IWebElement item in inputItems)
-                {
-                    if (item.TagName.Equals("select"))
-                    {
-                        SelectElement select = new SelectElement(item);
-                        select.SelectByText("Major");
-                    }
-
-                    switch (item.GetAttribute("type"))
-                    {
-                        case "checkbox":
-                            item.Click();
-                            break;
-                        case "text":
-                            item.SendKeys("Testing");
-                            break;
-                    }
-                }
+                createPage.FillOutInspection(i);
             }
 
 

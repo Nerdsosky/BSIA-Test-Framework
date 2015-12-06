@@ -29,7 +29,15 @@ namespace NUnitTestProject1.Pages
         By odometerTextbox = By.Id("MainContent_txt_odometer");
         By tagTextbox = By.Id("MainContent_txt_tag");
         By createdByTextbox = By.Id("MainContent_txt_createdBy");
-        By upadteByTextbox = By.Id("MainContent_txt_updatedBy");
+        By notesTextbox = By.Id("MainContent_ta_notes");
+
+        //Acknowledgements
+        By inspectionReviewedCheckbox = By.Id("MainContent_cb_agree_inspector");
+        By inspectionAgreedCheckbox = By.Id("MainContent_cb_agree_contractor");
+        By inspectorSignatureTextbox = By.Id("ctl00$MainContent$txt_sig_inspector");
+        By contractorSignatureFirstName = By.Id("ctl00$MainContent$txt_sig_contractor_first");
+        By contractorSignatureLastName = By.Id("ctl00$MainContent$txt_sig_contractor_last");
+        By submitInspectionButton = By.Id("MainContent_btn_createInspection");
 
 
         public IList<IWebElement> GetGroupInputElements(int groupNumber)
@@ -51,6 +59,31 @@ namespace NUnitTestProject1.Pages
             return inputChildElements;
         }
 
+        public CreatePage FillOutInspection(int groupNumber)
+        {
+            IList<IWebElement> inputItems = this.GetGroupInputElements(groupNumber);
+            foreach (IWebElement item in inputItems)
+            {
+                if (item.TagName.Equals("select"))
+                {
+                    SelectElement select = new SelectElement(item);
+                    select.SelectByText("Major");
+                }
+
+                switch (item.GetAttribute("type"))
+                {
+                    case "checkbox":
+                        item.Click();
+                        break;
+                    case "text":
+                        item.SendKeys("Testing");
+                        break;
+                }
+            }
+
+            return this;
+        }
+
 
         public CreatePage SelectBus(string busNumber)
         {
@@ -69,6 +102,45 @@ namespace NUnitTestProject1.Pages
         public CreatePage ClickGetBusInfo()
         {
             driver.FindElement(getBusInfoButton).Click();
+            return this;
+        }
+
+        public CreatePage SignInspectionInspector(String name)
+        {
+            driver.FindElement(inspectionReviewedCheckbox).Click();
+            driver.FindElement(inspectorSignatureTextbox).SendKeys(name);
+            return this;
+        }
+
+        public CreatePage SignInspectionContractor(String firstName, String lastName)
+        {
+            driver.FindElement(inspectionAgreedCheckbox).Click();
+            driver.FindElement(contractorSignatureFirstName).SendKeys(firstName);
+            driver.FindElement(contractorSignatureLastName).SendKeys(lastName);
+            return this;
+        }
+
+        public CreatePage EnterOdometer(String odometer)
+        {
+            driver.FindElement(odometerTextbox).SendKeys(odometer);
+            return this;
+        }
+
+        public CreatePage EnterTag(String tag)
+        {
+            driver.FindElement(tagTextbox).SendKeys(tag);
+            return this;
+        }
+
+        public CreatePage EnterCreatedBy(String creator)
+        {
+            driver.FindElement(createdByTextbox).SendKeys(creator);
+            return this;
+        }
+
+        public CreatePage EnterNotes(String notes)
+        {
+            driver.FindElement(notesTextbox).SendKeys(notes);
             return this;
         }
 

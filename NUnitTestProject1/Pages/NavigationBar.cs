@@ -22,8 +22,37 @@ namespace NUnitTestProject1.Pages
         By createLink = By.LinkText("Create");
         By editLink = By.LinkText("Edit");
         By reportsLink = By.LinkText("Reports");
-        By contactLink = By.LinkText("Contact");
         By registerLink = By.LinkText("Register");
         By loginLink = By.LinkText("Log in");
+
+        public void ClickHomeLink()
+        {
+            driver.FindElement(homeLink).Click();
+        }
+
+        public void ClickCreateLink()
+        {
+            driver.FindElement(createLink).Click();
+        }
+
+        public void ClickEditLink()
+        {
+            driver.FindElement(editLink).Click();
+        }
+
+        public void ClickReportsLink()
+        {
+            driver.FindElement(reportsLink).Click();
+        }
+
+        public void ClickRegisterLink()
+        {
+            driver.FindElement(registerLink).Click();
+        }
+
+        public void ClickLoginLink()
+        {
+            driver.FindElement(loginLink).Click();
+        }
     }
 }
