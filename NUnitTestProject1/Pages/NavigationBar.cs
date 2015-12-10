@@ -18,12 +18,41 @@ namespace NUnitTestProject1.Pages
             this.driver = driver;
         }
 
-        By homeLink = By.LinkText("BSIA Home");
+        By homeLink = By.CssSelector("[href*='./']");
         By createLink = By.LinkText("Create");
         By editLink = By.LinkText("Edit");
         By reportsLink = By.LinkText("Reports");
-        By contactLink = By.LinkText("Contact");
-        By registerLink = By.LinkText("Register");
-        By loginLink = By.LinkText("Log in");
+        By registerLink = By.CssSelector("[href*='Account/Register']");
+        By loginLink = By.CssSelector("[href*='Account/Login']");
+
+        public void ClickHomeLink()
+        {
+            driver.FindElement(homeLink).Click();
+        }
+
+        public void ClickCreateLink()
+        {
+            driver.FindElement(createLink).Click();
+        }
+
+        public void ClickEditLink()
+        {
+            driver.FindElement(editLink).Click();
+        }
+
+        public void ClickReportsLink()
+        {
+            driver.FindElement(reportsLink).Click();
+        }
+
+        public void ClickRegisterLink()
+        {
+            driver.FindElement(registerLink).Click();
+        }
+
+        public void ClickLoginLink()
+        {
+            driver.FindElement(loginLink).Click();
+        }
     }
 }

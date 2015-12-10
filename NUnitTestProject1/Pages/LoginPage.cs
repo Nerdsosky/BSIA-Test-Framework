@@ -18,7 +18,7 @@ namespace NUnitTestProject1.Pages
             this.driver = driver;
         }
 
-        By emailInput = By.Id("MainContent_Email");
+        By emailInput = By.Id("MainContent_UserName");
         By passwordInput = By.Id("MainContent_Password");
         By submitButton = By.Name("ctl00$MainContent$ctl05");
         By rememberMe = By.Id("MainContent_RememberMe");
@@ -46,12 +46,6 @@ namespace NUnitTestProject1.Pages
         {
             driver.FindElement(submitButton).Click();
             return new HomePage(driver);
-        }
-
-        public LoginPage SubmitLoginExpectingError()
-        {
-            driver.FindElement(submitButton).Click();
-            return this;
         }
 
         public HomePage LoginUser(string email, string password)
