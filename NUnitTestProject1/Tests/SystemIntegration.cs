@@ -32,7 +32,6 @@ namespace NUnitTestProject1.Tests
             navBar.ClickRegisterLink();
             RegisterPage registerPage = new RegisterPage(driver);
             registerPage.RegisterUser(username, password, password);
-            //Assert user created
         }
 
         [Test]
@@ -43,7 +42,6 @@ namespace NUnitTestProject1.Tests
             navBar.ClickRegisterLink();
             RegisterPage registerPage = new RegisterPage(driver);
             registerPage.RegisterUser(username, password, password);
-            //Assert error message
         }
 
         [Test]
@@ -55,7 +53,6 @@ namespace NUnitTestProject1.Tests
             navBar.ClickRegisterLink();
             RegisterPage registerPage = new RegisterPage(driver);
             registerPage.RegisterUser(username, password, wrongPassword);
-            //Assert error message
         }
 
         [Test]
@@ -66,7 +63,6 @@ namespace NUnitTestProject1.Tests
             navBar.ClickLoginLink();
             LoginPage loginPage = new LoginPage(driver);
             loginPage.LoginUser(username, password);
-            //Assert login
         }
 
         [Test]
@@ -77,7 +73,6 @@ namespace NUnitTestProject1.Tests
             navBar.ClickLoginLink();
             LoginPage loginPage = new LoginPage(driver);
             loginPage.LoginUser(username, password);
-            //Assert error
         }
 
         [Test]
@@ -88,7 +83,6 @@ namespace NUnitTestProject1.Tests
             navBar.ClickLoginLink();
             LoginPage loginPage = new LoginPage(driver);
             loginPage.LoginUser(username, password);
-            //Assert error
         }
 
         [Test]
@@ -138,8 +132,6 @@ namespace NUnitTestProject1.Tests
             createPage.SignInspectionInspector(username);
             createPage.SignInspectionContractor(contractorFirstname, contractorLastname);
             createPage.SubmitInspection();
-            //Assert Creation
-
         }
 
         [Test]
@@ -159,7 +151,6 @@ namespace NUnitTestProject1.Tests
             createPage.SelectBus(busNumber);
             createPage.SelectSeason(season);
             createPage.ClickGetBusInfo();
-            //Assert error message
         }
 
         [Test]
@@ -190,8 +181,6 @@ namespace NUnitTestProject1.Tests
             navBar.ClickEditLink();
             editPage.SelectBus(busNumber);
             editPage.ClickUpdateRepair();
-
-            //Assert update
         }
 
         [Test]
@@ -211,7 +200,6 @@ namespace NUnitTestProject1.Tests
             editPage.SelectBus(busNumber);
 
             editPage.ClickDeleteButton();
-            //Assert deletion
         }
 
         [Test]
