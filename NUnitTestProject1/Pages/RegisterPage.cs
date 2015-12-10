@@ -46,7 +46,13 @@ namespace NUnitTestProject1.Pages
             EnterUsername(username);
             EnterPassword(password);
             ConfirmPassword(confirmPassword);
+            driver.FindElement(registerButton).Click();
             return new HomePage(driver);
+        }
+
+        public String GetErrorMessage()
+        {
+            return "Need to implement";
         }
     }
 }

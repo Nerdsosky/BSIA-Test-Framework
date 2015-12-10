@@ -48,12 +48,6 @@ namespace NUnitTestProject1.Pages
             return new HomePage(driver);
         }
 
-        public LoginPage SubmitLoginExpectingError()
-        {
-            driver.FindElement(submitButton).Click();
-            return this;
-        }
-
         public HomePage LoginUser(string email, string password)
         {
             EnterEmail(email);

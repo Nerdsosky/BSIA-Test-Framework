@@ -144,5 +144,11 @@ namespace NUnitTestProject1.Pages
             return this;
         }
 
+        public CreatePage SubmitInspection()
+        {
+            driver.FindElement(submitInspectionButton).Click();
+            return this;
+        }
+
     }
 }
