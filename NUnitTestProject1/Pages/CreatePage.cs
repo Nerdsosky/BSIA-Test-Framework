@@ -34,9 +34,9 @@ namespace NUnitTestProject1.Pages
         //Acknowledgements
         By inspectionReviewedCheckbox = By.Id("MainContent_cb_agree_inspector");
         By inspectionAgreedCheckbox = By.Id("MainContent_cb_agree_contractor");
-        By inspectorSignatureTextbox = By.Id("ctl00$MainContent$txt_sig_inspector");
-        By contractorSignatureFirstName = By.Id("ctl00$MainContent$txt_sig_contractor_first");
-        By contractorSignatureLastName = By.Id("ctl00$MainContent$txt_sig_contractor_last");
+        By inspectorSignatureTextbox = By.Id("MainContent_txt_sig_inspector");
+        By contractorSignatureFirstName = By.Id("MainContent_txt_sig_contractor_first");
+        By contractorSignatureLastName = By.Id("MainContent_txt_sig_contractor_last");
         By submitInspectionButton = By.Id("MainContent_btn_createInspection");
 
 
@@ -108,6 +108,7 @@ namespace NUnitTestProject1.Pages
         public CreatePage SignInspectionInspector(String name)
         {
             driver.FindElement(inspectionReviewedCheckbox).Click();
+            driver.FindElement(inspectorSignatureTextbox).Clear();
             driver.FindElement(inspectorSignatureTextbox).SendKeys(name);
             return this;
         }
@@ -115,7 +116,9 @@ namespace NUnitTestProject1.Pages
         public CreatePage SignInspectionContractor(String firstName, String lastName)
         {
             driver.FindElement(inspectionAgreedCheckbox).Click();
+            driver.FindElement(contractorSignatureFirstName).Clear();
             driver.FindElement(contractorSignatureFirstName).SendKeys(firstName);
+            driver.FindElement(contractorSignatureLastName).Clear();
             driver.FindElement(contractorSignatureLastName).SendKeys(lastName);
             return this;
         }

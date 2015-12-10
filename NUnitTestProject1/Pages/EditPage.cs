@@ -31,6 +31,9 @@ namespace NUnitTestProject1.Pages
         By updatedByTextbox = By.Id("MainContent_txt_updatedBy");
         By notesTextbox = By.Id("MainContent_ta_notes");
 
+        By updateNotes;
+        By updateRepairDate;
+
         public EditPage SelectBus(String busNumber)
         {
             SelectElement busSelect = new SelectElement(driver.FindElement(busDropdown));
@@ -107,30 +110,48 @@ namespace NUnitTestProject1.Pages
             return inputChildElements;
         }
 
-        public EditPage FillOutInspection(int groupNumber)
+        public EditPage UncheckFailedItem(int groupNumber)
         {
+            Boolean uncheckedItem = false;
             IList<IWebElement> inputItems = this.GetGroupInputElements(groupNumber);
             foreach (IWebElement item in inputItems)
             {
-                if (item.TagName.Equals("select"))
-                {
-                    SelectElement select = new SelectElement(item);
-                    select.SelectByText("Major");
-                }
-
                 switch (item.GetAttribute("type"))
                 {
                     case "checkbox":
-                        item.Click();
+                        if (item.GetAttribute("checked") != null) { 
+                            item.Click();
+                            uncheckedItem = true;
+                        }
                         break;
-                    case "text":
-                        item.SendKeys("Testing");
-                        break;
+                }
+
+                if (uncheckedItem)
+                {
+                    break;
                 }
             }
 
             return this;
         }
 
+        public EditPage UpdateRepairItem(String itemNumber, String notes, String repairDate)
+        {
+            updateNotes = By.Id("MainContent_Repeater_repairs_txt_notes_" + itemNumber);
+            driver.FindElement(updateNotes).Clear();
+            driver.FindElement(updateNotes).SendKeys(notes);
+
+            updateRepairDate = By.Id("MainContent_Repeater_repairs_txt_repairDate_" + itemNumber);
+            driver.FindElement(updateRepairDate).Clear();
+            driver.FindElement(updateRepairDate).SendKeys(repairDate);
+            driver.FindElement(updateRepairButton).Click();
+            return this;
+        }
+
+        public EditPage ClickUpdateRepair()
+        {
+            driver.FindElement(updateRepairButton).Click();
+            return this;
+        }
     }
 }

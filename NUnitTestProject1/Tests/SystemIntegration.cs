@@ -94,13 +94,10 @@ namespace NUnitTestProject1.Tests
         [Test]
         public void G_Check_Navigation_Links()
         {
-            navBar.ClickRegisterLink();
             navBar.ClickLoginLink();
-
             LoginPage loginPage = new LoginPage(driver);
             loginPage.LoginUser("wysoskyj", "Football2!");
 
-            navBar.ClickHomeLink();
             navBar.ClickCreateLink();
             navBar.ClickEditLink();
             navBar.ClickReportsLink();
@@ -110,7 +107,7 @@ namespace NUnitTestProject1.Tests
         public void H_Create_Inspection(
             [Values("wysoskyj")] string username,
             [Values("Football2!")] string password,
-            [Values("104")] string busNumber,
+            [Values("105")] string busNumber,
             [Values("Fall")] string season,
             [Values("145256")] string odometer,
             [Values("JK5R4F3")] string tag,
@@ -149,7 +146,7 @@ namespace NUnitTestProject1.Tests
         public void I_Create_Duplicate_Inspection(
             [Values("wysoskyj")] string username,
             [Values("Football2!")] string password,
-            [Values("104")] string busNumber,
+            [Values("1")] string busNumber,
             [Values("Fall")] string season)
         {
             navBar.ClickLoginLink();
@@ -169,7 +166,7 @@ namespace NUnitTestProject1.Tests
         public void J_Edit_Inspection(
             [Values("wysoskyj")] string username,
             [Values("Football2!")] string password,
-            [Values("104")] string busNumber,
+            [Values("105")] string busNumber,
             [Values("Fall")] string season)
         {
             navBar.ClickLoginLink();
@@ -180,17 +177,20 @@ namespace NUnitTestProject1.Tests
             EditPage editPage = new EditPage(driver);
 
             editPage.SelectBus(busNumber);
-            editPage.SeasonSelect(season);
-            editPage.ClickGetBusInfo();
 
             editPage.ClickEditButton();
 
-            for (int i = 0; i < 8; i++)
+            for (int i = 1; i < 8; i++)
             {
-                editPage.FillOutInspection(i);
+                editPage.UncheckFailedItem(i);
             }
 
             editPage.ClickUpdateButton();
+
+            navBar.ClickEditLink();
+            editPage.SelectBus(busNumber);
+            editPage.ClickUpdateRepair();
+
             //Assert update
         }
 
@@ -198,7 +198,7 @@ namespace NUnitTestProject1.Tests
         public void K_Delete_Inspection(
             [Values("wysoskyj")] string username,
             [Values("Football2!")] string password,
-            [Values("104")] string busNumber,
+            [Values("105")] string busNumber,
             [Values("Fall")] string season)
         {
             navBar.ClickLoginLink();
@@ -209,11 +209,28 @@ namespace NUnitTestProject1.Tests
             EditPage editPage = new EditPage(driver);
 
             editPage.SelectBus(busNumber);
-            editPage.SeasonSelect(season);
-            editPage.ClickGetBusInfo();
 
             editPage.ClickDeleteButton();
             //Assert deletion
+        }
+
+        [Test]
+        public void L_Update_Repair([Values("wysoskyj")] string username,
+            [Values("Football2!")] string password,
+            [Values("1")] string busNumber,
+            [Values("0")] string itemNumber,
+            [Values("Fixed")] string repairNote,
+            [Values("12/10/2015")] string repairDate)
+        {
+            navBar.ClickLoginLink();
+            LoginPage loginpage = new LoginPage(driver);
+            loginpage.LoginUser(username, password);
+
+            navBar.ClickEditLink();
+            EditPage editPage = new EditPage(driver);
+
+            editPage.SelectBus(busNumber);
+            editPage.UpdateRepairItem(itemNumber, repairNote, repairDate);
         }
 
         [TearDown]
